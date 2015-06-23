@@ -1,0 +1,46 @@
+if(true) {
+(function(angular) {
+  'use strict';
+  function reverse(input, uppercase) {
+      input = input || '';
+      var out = "";
+      for (var i = 0; i < input.length; i++) {
+        out = input.charAt(i) + out;
+      }
+      // conditional based on optional argument
+      if (uppercase) {
+        out = out.toUpperCase();
+      }
+      return out;
+  }
+  function reverseController($scope) {
+    $scope.greeting = 'hello';
+  }
+  function reverseFactory() {return reverse}
+angular.module('myReverseFilterApp', [])
+  .filter('reverse', reverseFactory)
+  .controller('MyController', ['$scope', reverseController]);
+})(window.angular);
+} else {
+(function(angular) {
+  'use strict';
+angular.module('myReverseFilterApp', [])
+  .filter('reverse', function() {
+    return function(input, uppercase) {
+      input = input || '';
+      var out = "";
+      for (var i = 0; i < input.length; i++) {
+        out = input.charAt(i) + out;
+      }
+      // conditional based on optional argument
+      if (uppercase) {
+        out = out.toUpperCase();
+      }
+      return out;
+    };
+  })
+  .controller('MyController', ['$scope', function($scope) {
+    $scope.greeting = 'hello';
+  }]);
+})(window.angular);
+}

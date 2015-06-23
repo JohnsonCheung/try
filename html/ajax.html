@@ -1,0 +1,36 @@
+c<!DOCTYPE html>
+<html>
+<head>
+<!-- Data received as an execution of the predefined function. -->
+<script> function apiStatus(data) { console.log(data.status); } </script>
+<!-- Request sent via a script tag -->
+<script src="https://status.github.com/api/status.json?callback=apiStatus"></script>
+<script>
+function loadXMLDoc()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").value=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","http://localhost/loadPlan/cds.php",true);
+xmlhttp.send();
+}
+</script>
+</head>
+<body>
+<textarea id="myDiv"><h2>Let AJAX change this text</h2></textarea>
+<button type="button" onclick="loadXMLDoc()">Change Content</button>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<script src="/stdlib/angular.min.js"></script>
+<script>
+var App = angular.module('App',[]);
+
+//parent controller
+App.controller('parentCtrl',['$scope',parentCtrl]);
+function parentCtrl($scope) {
+    $scope.address = "address-1";
+    $scope.city = "city-1";
+    $scope.$on('cityBoom',function(events,data){
+            $scope.city = data;
+    });
+    
+    $scope.$on('addrBoom',function(events,data){
+            $scope.address = data;
+    });
+}
+
+
+//sub controller one
+
+App.controller('subCtrlOne',['$scope',subCtrlOne]);
+function subCtrlOne($scope) {
+    $scope.getCity=function(city){
+      $scope.$emit('cityBoom',city);
+    }
+}
+
+
+//sub controller two
+var ctlr = App.controller('subCtrlTwo',['$scope',subCtrlTwo]);
+function subCtrlTwo($scope) {
+    $scope.getAddrress = function(addr) {
+        $scope.$emit('addrBoom',addr);
+     }
+}
+</script>
+<body ng-app="App">
+<div ng-controller="parentCtrl">
+        
+    {{city}} , {{address}}
+    
+    <div ng-controller="subCtrlOne">
+       <input type="text" ng-model="city"/>
+       <button ng-click="getCity(city)">City !!!</button>
+    </div>
+    
+    <div ng-controller="subCtrlTwo">
+        <input type="text" ng-model="address"/>
+        <button ng-click="getAddrress(address)">Address !!!</button>
+    </div>
+</div>
+   
+</body>    

@@ -1,0 +1,24 @@
+<html ng-app="infdig">
+<head>
+<style>
+.selected {background-color:#80ff80;border-color:#80ff80;}
+</style>
+</head>
+<script src="\stdlib\angular.js"></script>
+<script>
+(function(angular){
+	'use strict';
+	angular.module('infdig',[])
+		.controller('controller',controllerFn);
+
+	function controllerFn($scope) {
+		$scope.$watch('foo', function() {
+			$scope.foo = $scope.foo + 1;
+		})
+	}
+})(angular)
+</script>
+<body ng-controller="controller">
+<p ng-click="foo=10">ksdf</p>
+</body>
+</html>

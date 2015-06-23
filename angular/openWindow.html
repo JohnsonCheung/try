@@ -1,0 +1,14 @@
+<html>
+<head>
+<script>
+var w = window.open("http://localhost:5984");
+var a = w.document;
+</script>
+</head>
+<body>
+aaaa
+</body>
+<script>
+w.document.onreadystatechange = function() { console.log(w.document.body.innerHTML);}
+</script>
+</html>

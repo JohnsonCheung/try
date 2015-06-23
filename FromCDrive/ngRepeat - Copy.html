@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example90-production</title>
+  <link href="animations.css" rel="stylesheet" type="text/css">
+  <script src="angular.js"></script>
+  <script src="angular-animate.js"></script>
+  <script>
+    angular.module("ngRepeatModule", []).
+    controller('ngRepeatController', ['$scope',function($scope) {
+      $scope.friend_td(friend,$index)
+      return '<td>{{$index + 1}}<td>{{friend.name}}<td>who is {{friend.age}} years old.'
+    }]);
+  </script>
+</head>
+<body ng-app="ngAnimate">
+  <div ng-init="friends = [
+  {name:'John', age:25, gender:'boy'},
+  {name:'Jessie', age:30, gender:'girl'},
+  {name:'Johanna', age:28, gender:'girl'},
+  {name:'Joy', age:15, gender:'girl'},
+  {name:'Mary', age:28, gender:'girl'},
+  {name:'Peter', age:95, gender:'boy'},
+  {name:'Sebastian', age:50, gender:'boy'},
+  {name:'Erika', age:27, gender:'girl'},
+  {name:'Patrick', age:40, gender:'boy'},
+  {name:'Samantha', age:60, gender:'girl'}
+]">
+<!--
+  <div ng-init="friends = [
+  ['Jessie',30,'girl'],
+  ['Jes3sie',330,'girl'],
+  ['Jess3ie',430,'girl'],
+  ['Jess4ie',30,'girl'],
+  ['Jessie',30,'girl'],
+  ['Jessie',30,'girl'],
+  ['Jessie',30,'girl'],
+]">
+-->
+  I have {{friends.length}} friends. They are:
+  <input type="search" ng-model="q" placeholder="filter friends..." aria-label="filter friends" />
+  <table class="example-animate-container">
+    <tr class="animate-repeat" ng-repeat="friend in friends | filter:q | orderBy : order">
+<!--        {{friend_td(friend,$index)}} -->
+       <td>{{$index + 1}}<td>{{friend.name}}<td>who is {{friend.age}} years old.
+    </tr>
+    <tr class="animate-repeat" ng-if="results.length == 0">
+      <td><strong>No results found...</strong>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

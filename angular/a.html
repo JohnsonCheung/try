@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Load Plan System</title>
+<link rel="systelsheet" href="css\menu.css">
+<script type="text/javascript" src="\stdlib\angular.min.js"></script>
+<script>
+var loadPlanApp = angular.module("loadPlanApp",[]);
+loadPlanApp.controller("menuController", function($scope) {
+	$scope.h1 = "Load Plan System";
+	$scope.rows = [];
+	for(var j=0;j<100;j++) {
+		$scope.rows.push({a:1,b:2,c:3});
+	}
+})
+</script>
+</head>
+<body ng-App="loadPlanApp" ng-controller="menuController">
+	<h1>{{h1}}</h1>
+	<table>
+<!--		<tr ng-repeat="tr in tRows">
+			<td ng-repeat="td in tr.tCells">
+			<p ng-If="td.isText">{{td.caption}}</p>
+			<input type="button" ng-If="td.isBtn">{{td.caption}}>
+		</tr>
+-->
+		<tr ng-repeat="tr in rows">
+			<td>{{tr.a}}<td>{{tr.b}}<td>{{tr.c}}
+		</tr>
+	</table>
+</body>
+</html>

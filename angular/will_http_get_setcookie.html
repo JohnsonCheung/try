@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../pgm/stdlib/angular.js"></script>
+    <script>
+        angular.module('app', []).controller('body', ['$scope', '$http', a]);
+        function a($scope, $http) {
+            $http.get('will_http_get_setcookie.php').success(function(data) {
+                debugger;
+            })
+        }
+    </script>
+</head>
+<body ng-controller="body">
+
+</body>
+</html>
